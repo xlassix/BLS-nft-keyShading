@@ -29,6 +29,8 @@ initializeApp({
 
 const db = getFirestore();
 
+
+//test key generation 
 exports.generateKeys = functions.https.onRequest(async (request, response) => {
   const { keyShades, idData } = await getKeyShades(
     "5e21291448898a8f1f2dea3086b039fbdc3403468d23c0eea0c3dd6dafbada3f"
@@ -36,7 +38,6 @@ exports.generateKeys = functions.https.onRequest(async (request, response) => {
 
   let recoveryKey = await recoverKey(keyShades.slice(0, 3), idData.slice(0, 3));
 
-  functions.logger.info("Hello logs!", { structuredData: true });
   response.json({
     message: "keyArrays",
     keyShades,
